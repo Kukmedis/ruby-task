@@ -1,0 +1,42 @@
+1	 *Potencialus Naudotojas gali užsiregistruoti sistemoje (nuo šiol jis - Naudotojas)
+    		Naudotojas turi:
+        			Prisijungimo vardą
+        			Slaptažodį
+        			El. pašto adresą
+        			Savo balansą : (naujai sukurto Naudotojo balansas = 100 pinigų)
+2	 *Naudotojas gali prisijungti prie sistemos
+3	 *Naudotojas gali matyti balansą
+4	 Naudotojas gali turėti Naudotojų draugų
+5	 Naudotojas gali pervesti norimą kiekį pinigų kitam Naudotojui savo draugui
+6	 Naudotojas gali matyti savo draugus 
+7	 Naudotojas gali matyti savo draugų pinigų kiekį
+8	 Naudotojas gali matyti prie kurio stalo yra jo draugas
+9	 Naudotojas gali siųsti žinutę Naudotojui draugui
+10	 Naudotojus gauna jam Naudotojų draugų siųstas žinutes
+11	 Naudotojas gauna pasiekimus
+12	 Naudotojas gali peržiūrėti savo pasiekimus
+13	 *Naudotojas gali matyti visus stalus
+14	 *Naudotojas gali ateiti prie stalo
+15	 *Naudotojas gali pasirinkti vietą ir atsisėsti prie stalo (nuo šiol jis - Žaidėjas)
+16	 *Naudotojas negali atsisėsti prie stalo jei laisvų vietų nėra
+17	 *Naudotojas atsisėsdamas prie stalo privalo atsinešti nustatytą pinigų kiekį
+18	 Žaidėjas gali viską ką ir Naudotojas, išskyrus 2, 13, 14, 15, 17 
+19	 Žaidėjas gali rašyti žinutes į bendrą žaidimo stalo žinučių srautą
+20	 *Žaidėjas gauna dvi kortas kai prasideda naujas žaidimas
+21	 *Žaidėjas gali atsakyti per savo ėjimą
+22	 *Žaidėjas gali mesti kortas per savo ėjimą
+23	 *Žaidėjas gali kelti statymą per savo ėjimą
+24	 *Žaidėjas gali statyti visus savo pinigus žaidime
+25	 *Žaidėjas gali praleisti ėjimą jei niekas nepakėlė statymo sumos
+26	 *Žaidėjui atverčiamos 3 kortos apėjus pirmam žaidimo ratui
+27	 *Žaidėjui atverčiama 1 korta apėjus antram žaidimo ratui
+28	 *Žaidėjui atverčiama 1 korta apėjus paskutiniam žaidimo ratui
+29	 Žaidėjas pamato kitų žaidėjų, kurie nemetė kortų, kortas
+30	 *Žaidėjas gali laimėti puodą (bendrą statymų sumą), jei turi geriausias kortas
+31	 *Žaidėjo laimėta suma turi būti pridedama prie jo atsinešto prie stalo sumos
+32	 *Žaidėjas gali puodą pasidalinti, jei keli žaidėjai turi vienodai vertingas kortas
+33	 Žaidėjas bet kada gali palikti žaidimo stalą
+34	 Žaidėjas bet kada gali atsistoti iš savo vietos
+35	 Žaidėjui palikus stalą jo visi turimi stalo pinigai pridedami prie jo balanso
+
+       

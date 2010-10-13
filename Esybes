@@ -1,0 +1,53 @@
+Naudotojas:                    #User
+#    username
+#    password
+#    email
+#    balance
+#    ...
+
+Žaidėjas < Naudotojas:         #Player < User
+#    hand
+#    tableBalance
+#    ...
+
+Ratas:                         #Round
+#    whoseTurn
+#    players      
+#    ...
+
+Stalas                         #Table
+#    quota              
+#    seats[]
+#    players[]
+#    ...
+    
+Kaladė                         #Deck
+#    cards[]
+#    flipCard
+#    giveCard
+#    ...
+
+Ranka                          #Hand
+#    cards[]
+#    value
+#    ...
+
+Puodas                         #Pot
+#    players[]
+#    totalValue
+#    ...
+    
+Draugų sąrašas                 #Friend_list
+#    users[]
+#    ...
+
+Pokalbis                       #Chat
+#    sender
+#    receiver
+#    messages[]
+#    ...
+
+Stalo pokalbis < Pokalbis      #TChat < Chat
+#    table
+#    ...
+
