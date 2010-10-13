@@ -8,7 +8,7 @@
 3	 *Naudotojas gali matyti balansą
 4	 Naudotojas gali turėti Naudotojų draugų
 5	 Naudotojas gali pervesti norimą kiekį pinigų kitam Naudotojui savo draugui
-6	 Naudotojas gali matyti savo draugus 
+6	 Naudotojas gali pridėti draugą
 7	 Naudotojas gali matyti savo draugų pinigų kiekį
 8	 Naudotojas gali matyti prie kurio stalo yra jo draugas
 9	 Naudotojas gali siųsti žinutę Naudotojui draugui
@@ -38,5 +38,6 @@
 33	 Žaidėjas bet kada gali palikti žaidimo stalą
 34	 Žaidėjas bet kada gali atsistoti iš savo vietos
 35	 Žaidėjui palikus stalą jo visi turimi stalo pinigai pridedami prie jo balanso
+36   Naudotojas gali ištrinti draugą
 
        
