@@ -36,10 +36,6 @@ Puodas                         #Pot
 #    players[]
 #    totalValue
 #    ...
-    
-Draugų sąrašas                 #Friend_list
-#    users[]
-#    ...
 
 Pokalbis                       #Chat
 #    sender

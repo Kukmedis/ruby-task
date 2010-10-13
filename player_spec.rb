@@ -9,5 +9,6 @@ describe Player, "When created" do
   it "should be an instance of User" do
     player.should be_a_kind_of User
   end
+   
   
 end
