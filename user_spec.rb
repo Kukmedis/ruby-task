@@ -1,6 +1,7 @@
 require 'user'
 
 describe User, "When created" do
+
   user = User.new("usern","passw","e@mai.l")
   friend = User.new("Vladas","K","nulis")
   
