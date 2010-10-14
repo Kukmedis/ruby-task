@@ -20,7 +20,7 @@
 15	 *Naudotojas gali pasirinkti vietą ir atsisėsti prie stalo (nuo šiol jis - Žaidėjas)
 16	 *Naudotojas negali atsisėsti prie stalo jei laisvų vietų nėra
 17	 *Naudotojas atsisėsdamas prie stalo privalo atsinešti nustatytą pinigų kiekį
-18	 Žaidėjas gali viską ką ir Naudotojas, išskyrus 2, 13, 14, 15, 17 
+18   Naudotojas gali ištrinti draugą
 19	 Žaidėjas gali rašyti žinutes į bendrą žaidimo stalo žinučių srautą
 20	 *Žaidėjas gauna dvi kortas kai prasideda naujas žaidimas
 21	 *Žaidėjas gali atsakyti per savo ėjimą
@@ -38,6 +38,5 @@
 33	 Žaidėjas bet kada gali palikti žaidimo stalą
 34	 Žaidėjas bet kada gali atsistoti iš savo vietos
 35	 Žaidėjui palikus stalą jo visi turimi stalo pinigai pridedami prie jo balanso
-36   Naudotojas gali ištrinti draugą
 
        
