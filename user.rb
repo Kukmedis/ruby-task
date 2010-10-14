@@ -22,11 +22,7 @@ class User
   end
   
   def isFriend(friend)
-    if @friends.index(friend) == nil
-      false
-    else
-      true
-    end
+    @friends.include?(friend)
   end
   
 end

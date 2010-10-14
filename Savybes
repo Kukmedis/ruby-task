@@ -28,9 +28,9 @@
 23	 *Žaidėjas gali kelti statymą per savo ėjimą
 24	 *Žaidėjas gali statyti visus savo pinigus žaidime
 25	 *Žaidėjas gali praleisti ėjimą jei niekas nepakėlė statymo sumos
-26	 *Žaidėjui atverčiamos 3 kortos apėjus pirmam žaidimo ratui
-27	 *Žaidėjui atverčiama 1 korta apėjus antram žaidimo ratui
-28	 *Žaidėjui atverčiama 1 korta apėjus paskutiniam žaidimo ratui
+26	 *Žaidėjams prie stalo atverčiamos 3 kortos apėjus pirmam žaidimo ratui
+27	 *Žaidėjams prie stalo atverčiama 1 korta apėjus antram žaidimo ratui
+28	 *Žaidėjams prie stalo atverčiama 1 korta apėjus paskutiniam žaidimo ratui
 29	 Žaidėjas pamato kitų žaidėjų, kurie nemetė kortų, kortas
 30	 *Žaidėjas gali laimėti puodą (bendrą statymų sumą), jei turi geriausias kortas
 31	 *Žaidėjo laimėta suma turi būti pridedama prie jo atsinešto prie stalo sumos

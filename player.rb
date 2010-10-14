@@ -11,6 +11,3 @@ class Player < User
   end
 end
 
-user = User.new("a","b","c")
-player = Player.new(user)
-player.money
