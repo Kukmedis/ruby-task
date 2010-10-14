@@ -1,9 +1,11 @@
 require 'user'
+require 'table'
 
-describe User, "When created" do
+describe User, "when created" do
 
   user = User.new("usern","passw","e@mai.l")
   friend = User.new("Vladas","K","nulis")
+  table = Table.new(5,2)
   
   it "should have 100 money" do    
     user.money.should equal 100
@@ -35,5 +37,14 @@ describe User, "When created" do
     user.isFriend(friend).should equal false
   end
   
+  it "should be able to sit at table" do
+    lambda {user.sitAtTable(table)}.should_not raise_error
+    table.players.index(user).should_not equal nil
+  end
+  
+  it "should be able to leave table" do
+    lambda {user.leaveTable}.should_not raise_error
+    table.players.index(user).should equal nil
+  end
     
 end

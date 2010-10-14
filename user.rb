@@ -1,3 +1,5 @@
+require 'table'
+
 class User
   attr_accessor :money, :username, :password, :email, :friends
   
@@ -7,6 +9,7 @@ class User
     @email = email
     @money = 100
     @friends = []
+    @table = nil
   end
   
   def addFriend(friend)
@@ -23,6 +26,16 @@ class User
   
   def isFriend(friend)
     @friends.include?(friend)
+  end
+  
+  def sitAtTable(table)
+    @table = table
+    table.players << self
+  end
+  
+  def leaveTable
+    @table.players -= [self]
+    @table = nil
   end
   
 end
