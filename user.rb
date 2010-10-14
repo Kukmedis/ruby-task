@@ -1,8 +1,8 @@
 require 'table'
 
 class User
-  attr_accessor :money, :username, :password, :email, :friends
-  
+  attr_accessor :money, :username, :password, :email, :friends, :table,
+                :tableBalance
   def initialize(username, password, email)
     @username = username
     @password = password
@@ -10,6 +10,7 @@ class User
     @money = 100
     @friends = []
     @table = nil
+    @tableBalance = nil
   end
   
   def addFriend(friend)
@@ -28,14 +29,20 @@ class User
     @friends.include?(friend)
   end
   
-  def sitAtTable(table)
-    @table = table
-    table.players << self
+  def joinTable(table, moneyTook)
+    if (moneyTook >= money) && (moneyTook >= table.quota)
+      @table = table
+      @tableBalance = moneyTook
+      table.players << self
+    end
   end
   
   def leaveTable
     @table.players -= [self]
     @table = nil
+    @tableBalance = nil    
   end
+  
+  
   
 end

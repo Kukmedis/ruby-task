@@ -38,13 +38,19 @@ describe User, "when created" do
   end
   
   it "should be able to sit at table" do
-    lambda {user.sitAtTable(table)}.should_not raise_error
+    lambda {user.joinTable(table, 200)}.should_not raise_error
     table.players.index(user).should_not equal nil
+    user.tableBalance.should >= table.quota
+    user.table.should_not equal nil
   end
   
   it "should be able to leave table" do
     lambda {user.leaveTable}.should_not raise_error
     table.players.index(user).should equal nil
+    user.tableBalance.should equal nil
+    user.table.should equal nil
   end
     
 end
+
+
