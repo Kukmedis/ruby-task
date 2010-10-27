@@ -11,9 +11,8 @@ class User
     @friends = []
     @table = nil
     @tableBalance = nil
-    @call = nil
-    @potShare = nil
-    @place = nil
+    @call = 0
+    @potShare = 0
   end
   
   def addFriend(friend)
@@ -43,7 +42,7 @@ class User
   def leaveTable
     if @table != nil
       @table.players -= [self]
-      @table.turn.players -= [self]
+      @table.turn.players -= [self] if @table.turn
       @table = nil
       @tableBalance = nil    
     end

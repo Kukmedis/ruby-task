@@ -1,33 +1,78 @@
 class Turn
-  attr_accessor :players
+  attr_accessor :players, :callSum
   def initialize(table)
-    @turn = nil
-    @pot = nil
-    @roundMoney = nil
+    @move = 0
+    @roundMoney = 0
     @players = []
-    @callSum = nil
-    i = 0
+    @callSum = 0
+    @raiser = nil
+    @table = table
+    @pot = 0
     table.players.each do |p|
-      if p.tableBalance >= table.bigBlind
-        @players << p
-        p.place = i
-        i += 1
-      end
+      @players << p if p.tableBalance >= table.bigBlind
     end
     if (@players.length < 2)
 
     end
   end
   
-  def nextTurn
-    
+  def nextMove
+    if (@move == @raiser)
+      @pot += @callSum
+      @callSum = 0
+      @players.each do |p|
+        p.call = 0
+      end 
+    else
+      @move = @players.shift
+      @players.push(@move)
+    end
   end 
   
-  def call(player)
+  def checkCards
     
+  
+  def nextGame
+    @dealer = @table.players.shift
+    @table.players.push(@dealer)
+  end
+  
+  def call(player)
     if (player.call < @callSum)
-      
+      if ((@callSum - player.call) >= player.tableBalance)
+        player.potShare += player.tableBalance
+        player.call += player.tableBalance
+        player.tableBalance = 0
+      else
+        player.tableBalance -= (@callSum - player.call)
+        player.potShare += (@callSum - player.call)
+        player.call = @callSum
+      end
+    end
   end  
+  
+  def fold(player)
+    @players -= player
+    player.call = 0
+    player.potShare = 0
+    if (@players.length == 2)
+      @players.player.tableBalance += @pot
+    end
+  end
+  
+  def raise(player, money)
+    sum = money - @callSum - player.call
+    if (sum > 0) && (money <= player.tableBalance)             
+      @callSum += sum     
+      player.potShare += money
+      player.call += sum
+      player.tableBalance -= money
+      @raiser = player
+    elsif (sum > 0) && (money > player.tableBalance)
+    end
+  end
+  
+  
   
   def dealer
     d = @players.index(table.lastDealer) + 1
