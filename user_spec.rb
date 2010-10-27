@@ -8,8 +8,8 @@ describe User, "when created" do
   friend = User.new("Vladas","K","nulis")
   table = Table.new(5,2)
   
-  it "should have 100 money" do    
-    user.money.should == 100
+  it "should have 1000 money" do    
+    user.money.should == 1000
   end
   
   it "should have a username" do
@@ -39,7 +39,7 @@ describe User, "when created" do
   end
   
   it "should be able to sit at table" do
-    lambda {user.joinTable(table, 200)}.should_not raise_error
+    lambda {user.joinTable(table, 300)}.should_not raise_error
     table.players.index(user).should_not == nil
     user.tableBalance.should >= table.quota
     user.table.should_not == nil
