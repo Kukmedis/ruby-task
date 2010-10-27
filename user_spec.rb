@@ -1,5 +1,6 @@
 require 'user'
 require 'table'
+require 'matcher'
 
 describe User, "when created" do
 
@@ -8,19 +9,19 @@ describe User, "when created" do
   table = Table.new(5,2)
   
   it "should have 100 money" do    
-    user.money.should equal 100
+    user.money.should == 100
   end
   
   it "should have a username" do
-    user.username.should_not equal ""
+    user.username.should_not == ""
   end
   
   it "should have a password" do
-    user.password.should_not equal ""
+    user.password.should_not == ""
   end
   
   it "should have an email" do
-    user.email.should_not equal ""
+    user.email.should_not == ""
   end
   
   it "should be able to see its money" do
@@ -29,26 +30,26 @@ describe User, "when created" do
   
   it "should be able to add friends" do
     lambda {user.addFriend(friend)}.should_not raise_error
-    user.isFriend(friend).should equal true
+    user.isFriend(friend).should == true
   end
   
   it "should be able to remove friends" do
     lambda {user.removeFriend(friend)}.should_not raise_error
-    user.isFriend(friend).should equal false
+    user.isFriend(friend).should == false
   end
   
   it "should be able to sit at table" do
     lambda {user.joinTable(table, 200)}.should_not raise_error
-    table.players.index(user).should_not equal nil
+    table.players.index(user).should_not == nil
     user.tableBalance.should >= table.quota
-    user.table.should_not equal nil
+    user.table.should_not == nil
   end
   
   it "should be able to leave table" do
     lambda {user.leaveTable}.should_not raise_error
-    table.players.index(user).should equal nil
-    user.tableBalance.should equal nil
-    user.table.should equal nil
+    table.players.index(user).should == nil
+    user.tableBalance.should == nil
+    user.table.should == nil
   end
     
 end
