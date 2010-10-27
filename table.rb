@@ -1,5 +1,5 @@
 class Table
-  attr_accessor :seats, :players, :smallBlind, :quota, :bigBlind
+  attr_accessor :seats, :players, :smallBlind, :quota, :bigBlind, :lastDealer
   
   def initialize(seats, smallBlind)
     @seats = seats
