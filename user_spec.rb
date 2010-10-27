@@ -46,10 +46,20 @@ describe User, "when created" do
   end
   
   it "should be able to leave table" do
+    user.joinTable(table, 500)
     lambda {user.leaveTable}.should_not raise_error
+    #user.leaveTable
     table.players.index(user).should == nil
     user.tableBalance.should == nil
     user.table.should == nil
+  end
+  
+  it "should have table balance when joins table" do
+    user.joinTable(table,300)
+    user.tableBalance.should > 0
+  end
+  
+  it "should not be able to join table when table is full" do
   end
     
 end

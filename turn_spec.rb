@@ -34,5 +34,30 @@ describe Turn, "when created" do
     turn.players.should be_only_from(table.players)
   end
 
+  it "should shift queue of players on next gove" do
+    beforeMove = turn.players
+    turn.nextMove
+    afterMove = turn.players
+    beforeMove.length.should == afterMove.length
+    beforeMove.at(0).should == afterMove.at(-1)
+  end
   
+  it "should shift queue of players in table on next game" do
+    beforeGame = table.players
+    turn.nextGame
+    afterGame = table.players
+    beforeGame.length.should == afterGame.length
+    beforeGame.at(0).should == afterGame.at(-1)
+  end
+  
+  it "should raise 25 when called sum is 10, player already called 5 and puts 30 money" do
+    user4.joinTable(table,500)
+    callSumBefore = turn.callSum
+    turn.callSum = 10
+    user4.call = 5
+    turn.raise(user4, 30)
+    callSumAfter = turn.callSum
+    (callSumAfter - callSumBefore).should == 25
+  end 
+     
 end
