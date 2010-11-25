@@ -10,5 +10,18 @@ class Deck
       end
     end
     @deck.shuffle
-  end 
+  end
+  
+  def giveTwo
+    [@deck.pop, @deck.pop]
+  end
+  
+  def giveThree
+    [@deck.pop, @deck.pop, @deck.pop]
+  end
+  
+  def giveOne
+    [@deck.pop]
+  end
+  
 end  

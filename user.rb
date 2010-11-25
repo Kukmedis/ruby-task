@@ -2,7 +2,7 @@ require 'table'
 
 class User
   attr_accessor :money, :username, :password, :email, :friends, :table,
-                :tableBalance, :call, :place, :potShare
+                :tableBalance, :call, :place, :potShare, :hand
   def initialize(username, password, email)
     @username = username
     @password = password
@@ -13,6 +13,7 @@ class User
     @tableBalance = nil
     @call = 0
     @potShare = 0
+    @hand = []
   end
   
   def addFriend(friend)
@@ -35,7 +36,7 @@ class User
     if (moneyTook <= money) && (moneyTook >= table.quota)
       @table = table
       @tableBalance = moneyTook
-      table.players << self
+      table.players << self if table.players.include?(self) == false
     end
   end
   

@@ -59,8 +59,6 @@ describe User, "when created" do
     user.tableBalance.should > 0
   end
   
-  it "should not be able to join table when table is full" do
-  end
     
 end
 
