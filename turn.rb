@@ -21,49 +21,67 @@ class Turn
       @players.each do |p|
         p.hand = @deck.giveTwo
       end
+      @move = @players.at(0) 
     end
   end
   
-  def nextMove
-    puts @move , "move"
-    puts @raiser, "raiser"
-    if @move == 0
-      @move = @players.at(0) 
-      puts "e"
-    end
+  def nextMove 
     if (@move == @raiser)
-      puts "a"
       @pot += (@callSum * @players.length)
       @callSum = 0
-      @players.each do |p| p.call = 0
-      if @round_number == 0
-        puts "a1"
-        @round_number = 1
-        @cards += @cards + @deck.giveThree
-      elsif @round_number == 1
-      puts "a2"
-        @round_number = 2
-        @cards += @cards + @deck.giveOne
-      elsif @round_number == 2
-      puts "a3"
-        @round_number = 3
-        @cards += @cards + @deck.giveOne
-      elsif @round_number == 3
-      puts "d"
-        checkCards
+      @players.each do |p| 
+        p.call = 0      
       end
-    end 
+      if @round_number == 3
+        @round_number = 0
+        checkCards
+      elsif @round_number == 2
+        @round_number = 3
+        @cards += @deck.giveOne
+      elsif @round_number == 1
+        @round_number = 2
+        @cards += @deck.giveOne
+      elsif @round_number == 0
+        @round_number = 1
+        @cards = @deck.giveThree
+      end
+      @move = @players.shift
+      @players.push(@move)
     else
-      puts "c"
       @move = @players.shift
       @players.push(@move)
     end
   end 
   
   def checkCards
+    @players.each do |p|
+      p.hand += @cards
+      p.hand = p.hand.sort_by {|h| h.at(1)}   
+      ranks = p.hand.transpose.at(1)
+      puts ranks.inspect
+      if ranks.uniq! == nil
+        p.hand_rank = 0 
+      elsif (ranks.uniq.length + 1) == ranks.length
+        p.hand_rank = 1        
+      else
+        (0..6).each do |i|
+          temp_hand = p.hand
+          if (temp_hand.remove(temp_hand.at(i)).length + 3) == p.hand.length
+            
+    end
+    
   end  
+    
+    
   
   def nextGame
+    @move = 0
+    @roundMoney = 0
+    @callSum = 0
+    @pot = 0
+    @cards = []
+    @players = []
+    @round_number = 0
     @dealer = @table.players.shift
     @table.players.push(@dealer)
   end
@@ -78,17 +96,20 @@ class Turn
         player.tableBalance -= (@callSum - player.call)
         player.potShare += (@callSum - player.call)
         player.call = @callSum
-      end
+      end     
     end
+    nextMove
   end  
   
   def fold(player)
     @players -= [player]
     player.call = 0
     player.potShare = 0
-    if (@players.length == 2)
+    if (@players.length < 2)
       @players.player.tableBalance += @pot
+      nextGame
     end
+    nextMove
   end
   
   def raise(player, money)

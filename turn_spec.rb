@@ -7,10 +7,10 @@ describe Turn, "when created" do
 
   table = Table.new(5,2)
   user1 = User.new("1","1","1")
-    user2 = User.new("2","2","2") 
-    user3 = User.new("3","3","3")
-    user4 = User.new("4","4","4")
-    turn = table.startTurn
+  user2 = User.new("2","2","2") 
+  user3 = User.new("3","3","3")
+  user4 = User.new("4","4","4")
+  turn = table.startTurn
   
   before do
     user1.joinTable(table,500)
@@ -98,18 +98,53 @@ describe Turn, "when created" do
   end
   
   it "should give three cards after first round has passed" do
-    turn.nextMove
     turn.raise(turn.move,10)
     turn.call(turn.move)
-    turn.nextMove
     turn.call(turn.move)
-    turn.nextMove
     turn.call(turn.move)
-    turn.nextMove
-    turn.nextMove
-    puts turn.cards.inspect
-    turn.should have(3).cards
-    
+    turn.should have(3).cards  
   end
+  
+  it "should have 4 cards after second round has finished" do
+    turn.raise(turn.move,10)
+    (1..7).each do |i|
+      turn.call(turn.move)
+    end
+    turn.should have(4).cards
+  end
+  
+  it "should have 5 cards after third round has finished" do
+    turn.raise(turn.move,10)
+    (1..11).each do |i|
+      turn.call(turn.move)
+    end
+    turn.should have(5).cards
+  end
+  
+  it "should have 4 cards after second round has finished, and one player made a move" do
+    turn.raise(turn.move,10)
+    (1..8).each do |i|
+      turn.call(turn.move)
+    end
+    turn.should have(4).cards
+  end
+  
+  it "should give three cards after first round has passed, and one player made a move" do
+    turn.raise(turn.move,10)
+    (1..4).each do |i|
+      turn.call(turn.move)
+    end
+    turn.should have(3).cards  
+  end
+  
+  it "should sort cards when evaluating strength" do
+    turn.cards = [['C',7],['H',3],['D',10],['S',2],['S',12]]
+    turn.players.at(0).hand = [['H',4],['D',9]]
+    turn.checkCards
+    turn.players.at(0).hand.should == [["S", 2], ["H", 3], ["H", 4], ["C", 7], ["D", 9], ["D", 10], ["S", 12]]
+  end
+  
+  
+    
      
 end
