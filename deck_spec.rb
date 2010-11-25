@@ -2,6 +2,9 @@ require 'deck'
 
 describe Deck, "When created" do
   deck = Deck.new
+  before do
+    deck = Deck.new
+  end
   
   it "should have no similar cards" do
     deck.deck.uniq!.should == nil
@@ -14,22 +17,27 @@ describe Deck, "When created" do
   it "should give one card" do
     given_card1 = deck.giveOne.at(0)
     deck.deck.include?(given_card1).should == false
+    deck.should have(51).deck
   end
   
   it "should give two cards" do
-    given_card1 = deck.giveOne.at(0)
-    given_card2 = deck.giveOne.at(1)
+    given = deck.giveTwo
+    given_card1 = given.at(0)
+    given_card2 = given.at(1)
     deck.deck.include?(given_card1).should == false
     deck.deck.include?(given_card2).should == false
+    deck.should have(50).deck
   end
   
   it "should give three cards" do
-    given_card1 = deck.giveOne.at(0)
-    given_card2 = deck.giveOne.at(1)
-    given_card3 = deck.giveOne.at(2)
+    given = deck.giveThree
+    given_card1 = given.at(0)
+    given_card2 = given.at(1)
+    given_card3 = given.at(2)
     deck.deck.include?(given_card1).should == false
     deck.deck.include?(given_card2).should == false
     deck.deck.include?(given_card3).should == false
+    deck.should have(49).deck
   end
     
 end
