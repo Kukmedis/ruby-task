@@ -14,6 +14,7 @@ class User
     @call = 0
     @potShare = 0
     @hand = []
+    @hand_rank = 0
   end
   
   def addFriend(friend)

@@ -1,7 +1,7 @@
 class Deck
   attr_accessor :deck
   def initialize
-    rank = ['2','3','4','5','6','7','8','9','10','J','Q','K','A']
+    rank = [2,3,4,5,6,7,8,9,10,11,12,13,14]
     suite = ['D','H','S','C']
     @deck = [] 
     rank.each do |i|
@@ -9,11 +9,12 @@ class Deck
         @deck.push([j,i])
       end
     end
-    @deck.shuffle
+    @deck = @deck.shuffle
   end
   
   def giveTwo
-    [@deck.pop, @deck.pop]
+    a = [@deck.pop, @deck.pop]
+    
   end
   
   def giveThree
