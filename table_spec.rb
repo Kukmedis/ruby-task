@@ -44,6 +44,6 @@ describe Table, "When created" do
     table.should have(1).players
   end
   
- 
+   
     
 end

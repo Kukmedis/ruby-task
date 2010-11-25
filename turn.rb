@@ -10,8 +10,7 @@ class Turn
     @table = table
     @pot = 0
     @cards = []
-    @round_number = 0 #0,1,2,3,4
-    
+    @round_number = 0 #0,1,2,3,4   
     @deck = Deck.new
     table.players.each do |p|
       @players << p if p.tableBalance >= table.bigBlind
@@ -26,25 +25,36 @@ class Turn
   end
   
   def nextMove
-    @move = @players.at(0) if @move == 0
+    puts @move , "move"
+    puts @raiser, "raiser"
+    if @move == 0
+      @move = @players.at(0) 
+      puts "e"
+    end
     if (@move == @raiser)
+      puts "a"
       @pot += (@callSum * @players.length)
       @callSum = 0
       @players.each do |p| p.call = 0
       if @round_number == 0
-        @round_number == 1
+        puts "a1"
+        @round_number = 1
         @cards += @cards + @deck.giveThree
       elsif @round_number == 1
-        @round_number == 2
+      puts "a2"
+        @round_number = 2
         @cards += @cards + @deck.giveOne
       elsif @round_number == 2
-        @round_number == 3
+      puts "a3"
+        @round_number = 3
         @cards += @cards + @deck.giveOne
       elsif @round_number == 3
+      puts "d"
         checkCards
       end
     end 
     else
+      puts "c"
       @move = @players.shift
       @players.push(@move)
     end
@@ -83,14 +93,16 @@ class Turn
   
   def raise(player, money)
     sum = money - @callSum - player.call
-    if (sum > 0) && (money <= player.tableBalance)             
+    #if (sum > 0) && (money <= player.tableBalance)             
       @callSum += sum     
       player.potShare += money
       player.call += sum
       player.tableBalance -= money
       @raiser = player
-    elsif (sum > 0) && (money > player.tableBalance)
-    end
+      @move = @players.shift
+      @players.push(@move)
+    #elsif (sum > 0) && (money > player.tableBalance)
+    #end
   end
   
   

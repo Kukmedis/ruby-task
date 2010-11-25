@@ -13,15 +13,18 @@ describe Turn, "when created" do
     turn = table.startTurn
   
   before do
-    user1 = User.new("1","1","1")
-    user2 = User.new("2","2","2") 
-    user3 = User.new("3","3","3")
-    user4 = User.new("4","4","4")
     user1.joinTable(table,500)
     user2.joinTable(table,500)
     user3.joinTable(table,500)
     user4.joinTable(table,500)
     turn = table.startTurn
+  end
+  
+  after(:each) do
+    user1.leaveTable
+    user2.leaveTable
+    user3.leaveTable
+    user4.leaveTable
   end
   
   it "should not start if table has less than 2 players" do
@@ -97,14 +100,16 @@ describe Turn, "when created" do
   it "should give three cards after first round has passed" do
     turn.nextMove
     turn.raise(turn.move,10)
-    turn.nextMove
     turn.call(turn.move)
     turn.nextMove
     turn.call(turn.move)
     turn.nextMove
     turn.call(turn.move)
-    turn.nextMove 
+    turn.nextMove
+    turn.nextMove
+    puts turn.cards.inspect
     turn.should have(3).cards
+    
   end
      
 end
