@@ -28,7 +28,7 @@ class Turn
   def nextMove
     @move = @players.at(0) if @move == 0
     if (@move == @raiser)
-      @pot += (@callSum * @players)
+      @pot += (@callSum * @players.length)
       @callSum = 0
       @players.each do |p| p.call = 0
       if @round_number == 0
