@@ -1,5 +1,6 @@
+require 'deck'
 class Turn
-  attr_accessor :players, :callSum
+  attr_accessor :players, :callSum, :raiser, :round_number, :cards, :move
   def initialize(table)
     @move = 0
     @roundMoney = 0
@@ -8,21 +9,41 @@ class Turn
     @raiser = nil
     @table = table
     @pot = 0
+    @cards = []
+    @round_number = 0 #0,1,2,3,4
+    
+    @deck = Deck.new
     table.players.each do |p|
       @players << p if p.tableBalance >= table.bigBlind
     end
     if (@players.length < 2)
-
+      @players = []
+    else
+      @players.each do |p|
+        p.hand = @deck.giveTwo
+      end
     end
   end
   
   def nextMove
+    @move = @players.at(0) if @move == 0
     if (@move == @raiser)
-      @pot += @callSum
+      @pot += (@callSum * @players)
       @callSum = 0
-      @players.each do |p|
-        p.call = 0
-      end 
+      @players.each do |p| p.call = 0
+      if @round_number == 0
+        @round_number == 1
+        @cards += @cards + @deck.giveThree
+      elsif @round_number == 1
+        @round_number == 2
+        @cards += @cards + @deck.giveOne
+      elsif @round_number == 2
+        @round_number == 3
+        @cards += @cards + @deck.giveOne
+      elsif @round_number == 3
+        checkCards
+      end
+    end 
     else
       @move = @players.shift
       @players.push(@move)
@@ -30,7 +51,7 @@ class Turn
   end 
   
   def checkCards
-    
+  end  
   
   def nextGame
     @dealer = @table.players.shift
@@ -52,7 +73,7 @@ class Turn
   end  
   
   def fold(player)
-    @players -= player
+    @players -= [player]
     player.call = 0
     player.potShare = 0
     if (@players.length == 2)
@@ -89,6 +110,7 @@ class Turn
     @players.at(bb % @players.length)
   end
   
-  
+  def work
+  end
   
 end  
