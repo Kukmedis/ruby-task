@@ -1,6 +1,6 @@
 require 'deck'
 class Turn
-  attr_accessor :players, :callSum, :raiser, :round_number, :cards, :move
+  attr_accessor :players, :callSum, :raiser, :round_number, :cards, :move, :pot
   def initialize(table)
     @move = 0
     @roundMoney = 0
@@ -33,7 +33,7 @@ class Turn
         p.call = 0      
       end
       if @round_number == 3
-        @round_number = 0
+        @round_number = 4
         checkCards
       elsif @round_number == 2
         @round_number = 3
@@ -58,16 +58,13 @@ class Turn
       p.hand += @cards
       p.hand = p.hand.sort_by {|h| h.at(1)}   
       ranks = p.hand.transpose.at(1)
-      puts ranks.inspect
       if ranks.uniq! == nil
         p.hand_rank = 0 
       elsif (ranks.uniq.length + 1) == ranks.length
         p.hand_rank = 1        
       else
-        (0..6).each do |i|
-          temp_hand = p.hand
-          if (temp_hand.remove(temp_hand.at(i)).length + 3) == p.hand.length
-            
+        
+      end
     end
     
   end  
@@ -82,8 +79,20 @@ class Turn
     @cards = []
     @players = []
     @round_number = 0
-    @dealer = @table.players.shift
-    @table.players.push(@dealer)
+    #@dealer = @table.players.shift
+    #@table.players.push(@dealer)
+    @deck = Deck.new
+    @table.players.each do |p|
+      @players << p if p.tableBalance >= @table.bigBlind
+    end
+    if (@players.length < 2)
+      @players = []
+    else
+      @players.each do |p|
+        p.hand = @deck.giveTwo
+      end
+      @move = @players.at(0) 
+    end
   end
   
   def call(player)
@@ -106,15 +115,15 @@ class Turn
     player.call = 0
     player.potShare = 0
     if (@players.length < 2)
-      @players.player.tableBalance += @pot
+      player.tableBalance += @pot
       nextGame
     end
     nextMove
   end
   
   def raise(player, money)
-    sum = money - @callSum - player.call
-    #if (sum > 0) && (money <= player.tableBalance)             
+    if (money <= player.tableBalance)
+      sum = money - @callSum - player.call          
       @callSum += sum     
       player.potShare += money
       player.call += sum
@@ -122,8 +131,7 @@ class Turn
       @raiser = player
       @move = @players.shift
       @players.push(@move)
-    #elsif (sum > 0) && (money > player.tableBalance)
-    #end
+    end
   end
   
   

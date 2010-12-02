@@ -1,4 +1,6 @@
 require 'deck'
+#require 'simplecov'
+#SimpleCov.start
 
 describe Deck, "When created" do
   deck = Deck.new
@@ -38,6 +40,12 @@ describe Deck, "When created" do
     deck.deck.include?(given_card2).should == false
     deck.deck.include?(given_card3).should == false
     deck.should have(49).deck
+  end
+  
+  it "should give four cards and have 48 left" do
+    given1 = deck.giveTwo
+    given2 = deck.giveTwo
+    deck.should have(48).deck
   end
     
 end

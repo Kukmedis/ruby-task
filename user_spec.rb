@@ -29,34 +29,37 @@ describe User, "when created" do
   end
   
   it "should be able to add friends" do
-    lambda {user.addFriend(friend)}.should_not raise_error
+    user.addFriend(friend)
     user.isFriend(friend).should == true
   end
   
   it "should be able to remove friends" do
-    lambda {user.removeFriend(friend)}.should_not raise_error
+    user.removeFriend(friend)
     user.isFriend(friend).should == false
   end
   
   it "should be able to sit at table" do
-    lambda {user.joinTable(table, 300)}.should_not raise_error
+    user.joinTable(table, 300)
     table.players.index(user).should_not == nil
-    user.tableBalance.should >= table.quota
     user.table.should_not == nil
   end
   
   it "should be able to leave table" do
     user.joinTable(table, 500)
-    lambda {user.leaveTable}.should_not raise_error
-    #user.leaveTable
+    user.leaveTable
     table.players.index(user).should == nil
-    user.tableBalance.should == nil
     user.table.should == nil
+  end
+  
+  it "should make table balance nil when user leaves table" do
+    user.joinTable(table,500)
+    user.leaveTable
+    user.tableBalance.should == nil
   end
   
   it "should have table balance when joins table" do
     user.joinTable(table,300)
-    user.tableBalance.should > 0
+    user.tableBalance.should == 300
   end
   
     
