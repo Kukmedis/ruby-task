@@ -21,6 +21,21 @@ describe Table, "When created" do
     table.quota.should == 200
   end
   
+  it "should have small blind of 5, if passed 5 as smallblind" do    
+    table = Table.new(5,5)
+    table.smallBlind.should == 5
+  end
+  
+  it "should have big blind of 10, if passed 5 as small blind" do    
+    table = Table.new(5,5)
+    table.bigBlind.should == 10
+  end  
+    
+  it "should have quota of 500, if passed 5 as small blind" do    
+    table = Table.new(5,5)
+    table.quota.should == 500
+  end
+  
   it "should have 0 players" do    
     table.should have(0).players
   end

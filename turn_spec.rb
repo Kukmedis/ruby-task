@@ -32,7 +32,7 @@ describe Turn, "when created" do
     user2.leaveTable
     user3.leaveTable
     table.startTurn
-    turn.should have(0).players
+    turn.should have(1).players
   end
   
   it "should contain players from table who at least have big blind" do
@@ -105,6 +105,11 @@ describe Turn, "when created" do
     turn.should have(3).cards  
   end
   
+  it "should not let raise more than user has" do
+    turn.raise(turn.move,8000)
+    turn.callSum.should <= 1000
+  end
+  
   it "should have 4 cards after second round has finished" do
     turn.raise(turn.move,10)
     (1..7).each do |i|
@@ -135,6 +140,13 @@ describe Turn, "when created" do
       turn.call(turn.move)
     end
     turn.should have(3).cards  
+  end
+  
+  it "should start new game when everybody folds" do
+    turn.fold(turn.move)
+    turn.fold(turn.move)
+    turn.fold(turn.move)
+    turn.should have(4).players
   end
   
   it "should sort cards when evaluating strength" do

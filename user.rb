@@ -2,7 +2,7 @@ require 'table'
 
 class User
   attr_accessor :money, :username, :password, :email, :friends, :table,
-                :tableBalance, :call, :place, :potShare, :hand
+                :tableBalance, :call, :place, :potShare, :hand, :hand_rank
   def initialize(username, password, email)
     @username = username
     @password = password
