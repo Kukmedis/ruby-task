@@ -86,7 +86,6 @@ describe Turn, "when created" do
     turn.raise(user1,10)
     turn.raise(user2,20)
     turn.callSum.should == 20
-    turn.raiser.should == user2
   end
   
   it "should make call pot 70 if raised - 10,40,70" do
@@ -94,7 +93,27 @@ describe Turn, "when created" do
     turn.raise(user2,40)
     turn.raise(user3,70)
     turn.callSum.should == 70
-    turn.raiser.should == user3
+  end
+  
+  it "should make call pot 100 if raised - 20,50,100" do
+    turn.raise(user1,20)
+    turn.raise(user2,50)
+    turn.raise(user3,100)
+    turn.callSum.should == 100
+  end
+  
+  it "should make call pot 20 if raised - 5,10,20" do
+    turn.raise(user1,5)
+    turn.raise(user2,10)
+    turn.raise(user3,20)
+    turn.callSum.should == 20
+  end
+  
+  it "should make call pot 80 if raised - 0,40,80" do
+    turn.raise(user1,0)
+    turn.raise(user2,40)
+    turn.raise(user3,80)
+    turn.callSum.should == 80
   end
   
   it "should give three cards after first round has passed" do

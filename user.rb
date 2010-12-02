@@ -35,6 +35,10 @@ class User
   
   def joinTable(table, moneyTook)
     if (moneyTook <= money) && (moneyTook >= table.quota)
+      @call = 0
+      @potShare = 0
+      @hand = []
+      @hand_rank = 0
       @table = table
       @tableBalance = moneyTook
       table.players << self if table.players.include?(self) == false

@@ -79,8 +79,8 @@ class Turn
     @cards = []
     @players = []
     @round_number = 0
-    #@dealer = @table.players.shift
-    #@table.players.push(@dealer)
+    @dealer = @table.players.shift
+    @table.players.push(@dealer)
     @deck = Deck.new
     @table.players.each do |p|
       @players << p if p.tableBalance >= @table.bigBlind
