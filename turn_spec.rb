@@ -1,7 +1,9 @@
-require 'turn'
-require 'table'
-require 'user'
-require 'matcher'
+require '~/ruby/turn'
+require '~/ruby/table'
+require '~/ruby/user'
+require '~/ruby/matcher'
+require 'simplecov'
+SimpleCov.start
 
 describe Turn, "when created" do
 
@@ -13,6 +15,10 @@ describe Turn, "when created" do
   turn = table.startTurn
   
   before do
+    user1.money = 1000
+    user2.money = 1000
+    user3.money = 1000
+    user4.money = 1000
     user1.joinTable(table,500)
     user2.joinTable(table,500)
     user3.joinTable(table,500)
@@ -38,7 +44,7 @@ describe Turn, "when created" do
   it "should contain players from table who at least have big blind" do
     user4.tableBalance = 0
     turn = table.startTurn
-    turn.players.should_not contain(user4)
+    turn.players.index(user4).should == nil
   end
   
   it "should contain players only from table" do
@@ -114,6 +120,14 @@ describe Turn, "when created" do
     turn.raise(user2,40)
     turn.raise(user3,80)
     turn.callSum.should == 80
+  end
+  
+  it "should not make call if called more than player has" do
+    user1.tableBalance = 1000
+    user2.tableBalance = 30
+    turn.raise(user1,500)
+    turn.call(user2)
+    user2.call.should == 0
   end
   
   it "should give three cards after first round has passed" do

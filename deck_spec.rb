@@ -1,6 +1,6 @@
-require 'deck'
-#require 'simplecov'
-#SimpleCov.start
+require '~/ruby/deck'
+require 'simplecov'
+SimpleCov.start
 
 describe Deck, "When created" do
   deck = Deck.new
@@ -26,8 +26,7 @@ describe Deck, "When created" do
     given = deck.giveTwo
     given_card1 = given.at(0)
     given_card2 = given.at(1)
-    deck.deck.include?(given_card1).should == false
-    deck.deck.include?(given_card2).should == false
+    deck.deck.should not_contain([given_card1,given_card2])
     deck.should have(50).deck
   end
   
@@ -36,9 +35,7 @@ describe Deck, "When created" do
     given_card1 = given.at(0)
     given_card2 = given.at(1)
     given_card3 = given.at(2)
-    deck.deck.include?(given_card1).should == false
-    deck.deck.include?(given_card2).should == false
-    deck.deck.include?(given_card3).should == false
+    deck.deck.should not_contain([given_card1,given_card2,given_card3])
     deck.should have(49).deck
   end
   

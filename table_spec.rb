@@ -1,5 +1,7 @@
-require 'table'
-require 'user'
+require '~/ruby/table'
+require '~/ruby/user'
+require 'simplecov'
+SimpleCov.start
 
 describe Table, "When created" do
   user = User.new('a','b','b')
@@ -37,7 +39,7 @@ describe Table, "When created" do
   end
   
   it "should have 0 players" do    
-    table.should have(0).players
+    table.players.should be_empty
   end
   
   it "should add 1 player, when player joins" do

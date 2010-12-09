@@ -1,6 +1,8 @@
-require 'user'
-require 'table'
-require 'matcher'
+require '~/ruby/user'
+require '~/ruby/table'
+require '~/ruby/matcher'
+require 'simplecov'
+SimpleCov.start
 
 describe User, "when created" do
 
@@ -60,6 +62,11 @@ describe User, "when created" do
   it "should have table balance when joins table" do
     user.joinTable(table,300)
     user.tableBalance.should == 300
+  end
+  
+  it "should have 1 friend, if he adds 1 friend" do
+    user.addFriend(friend)
+    user.howManyFriends.should == 1
   end
   
     

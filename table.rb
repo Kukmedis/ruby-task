@@ -1,4 +1,4 @@
-require 'turn'
+require '~/ruby/turn'
 
 class Table
   attr_accessor :seats, :players, :smallBlind, :quota, :bigBlind, :lastDealer, :turn

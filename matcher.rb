@@ -1,18 +1,19 @@
-Spec::Matchers.define :contain do |user|
+Spec::Matchers.define :not_contain do |card|
   match do |obj|
-    obj.index(user) != nil
+    dif = obj-card
+    dif == obj
   end
 
   failure_message_for_should do |obj|
-    "expected that #{obj} would contain #{user}"
+    "expected that #{obj} would not contain #{card}"
   end
 
   failure_message_for_should_not do |obj|
-    "expected that #{obj} would not contain #{user}"
+    "expected that #{obj} would contain #{card}"
   end
 
   description do
-    "contain #{user}"
+    "not contain #{card}"
   end
 end
 

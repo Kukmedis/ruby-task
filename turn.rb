@@ -1,4 +1,4 @@
-require 'deck'
+require '~/ruby/deck'
 class Turn
   attr_accessor :players, :callSum, :raiser, :round_number, :cards, :move, :pot
   def initialize(table)
@@ -96,7 +96,7 @@ class Turn
   end
   
   def call(player)
-    if (player.call < @callSum)
+    if (player.call <= @callSum)
       if ((@callSum - player.call) >= player.tableBalance)
         player.potShare += player.tableBalance
         player.call += player.tableBalance
@@ -136,22 +136,22 @@ class Turn
   
   
   
-  def dealer
-    d = @players.index(table.lastDealer) + 1
-    @players.at(d % @players.length)
-  end
+  #def dealer
+  #  d = @players.index(table.lastDealer) + 1
+  #  @players.at(d % @players.length)
+  #end
+  #
+  #def smallBlinder
+  #  sb = @players.index(table.lastDealer) + 2
+  #  @players.at(sb % @players.length)
+  #end 
+  #
+  #def bigBlinder
+  #  bb = @players.index(table.lastDealer) + 3
+  #  @players.at(bb % @players.length)
+  #end
   
-  def smallBlinder
-    sb = @players.index(table.lastDealer) + 2
-    @players.at(sb % @players.length)
-  end 
-  
-  def bigBlinder
-    bb = @players.index(table.lastDealer) + 3
-    @players.at(bb % @players.length)
-  end
-  
-  def work
-  end
+  #def work
+  #end
   
 end  

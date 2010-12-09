@@ -1,7 +1,8 @@
-require 'user'
-require 'table'
-require 'turn'
-require 'deck'
+require '~/ruby/user'
+require '~/ruby/table'
+require '~/ruby/turn'
+require '~/ruby/deck'
+require 'yaml.rb'
 
 class UI
   def run
@@ -15,7 +16,7 @@ class UI
     user3.joinTable(table,200);
     user4.joinTable(table,200);
     turn = table.startTurn();
-    while true:
+    while true
       puts "Turn:    #{turn.move.username}"
       puts "Balance: #{turn.move.tableBalance}"
       puts "Hand:    #{turn.move.hand.inspect}"
@@ -24,6 +25,8 @@ class UI
       puts "1.Fold"
       puts "2.Call"
       puts "3.Raise"
+      puts "4.Save"
+      puts "5.Load"
       choice = gets.chomp
       if (choice == "1")
         turn.fold(turn.move)
@@ -33,10 +36,19 @@ class UI
         puts "How many?:"
         choice = gets.chomp
         turn.raise(turn.move, choice.to_i)
-      end
-
-
-      
+      elsif (choice == "4")
+        output = File.new('table.yml', 'w')
+        output.puts YAML.dump(table)
+        output = File.new('turn.yml', 'w')
+        output.puts YAML.dump(turn)
+        output.close
+      elsif (choice == "5")
+        output = File.new('table.yml', 'r')
+        table = YAML.load(output.read)
+        output = File.new('turn.yml', 'r')
+        turn = YAML.load(output.read)
+        output.close
+      end   
     end
   end
 end
