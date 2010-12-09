@@ -1,4 +1,4 @@
-require 'table'
+require '~/ruby/table'
 
 class User
   attr_accessor :money, :username, :password, :email, :friends, :table,
