@@ -1,0 +1,180 @@
+--- &id006 !ruby/object:Turn 
+callSum: 0
+cards: []
+
+deck: !ruby/object:Deck 
+  deck: 
+  - - S
+    - 7
+  - - H
+    - 12
+  - - S
+    - 3
+  - - C
+    - 11
+  - - S
+    - 5
+  - - H
+    - 2
+  - - C
+    - 7
+  - - H
+    - 3
+  - - D
+    - 6
+  - - D
+    - 5
+  - - S
+    - 4
+  - - H
+    - 5
+  - - D
+    - 9
+  - - D
+    - 4
+  - - D
+    - 12
+  - - C
+    - 2
+  - - H
+    - 7
+  - - H
+    - 4
+  - - H
+    - 6
+  - - H
+    - 10
+  - - C
+    - 13
+  - - D
+    - 2
+  - - S
+    - 14
+  - - D
+    - 14
+  - - S
+    - 8
+  - - C
+    - 8
+  - - S
+    - 9
+  - - C
+    - 5
+  - - D
+    - 13
+  - - C
+    - 3
+  - - S
+    - 2
+  - - S
+    - 11
+  - - C
+    - 10
+  - - C
+    - 14
+  - - C
+    - 4
+  - - H
+    - 8
+  - - C
+    - 12
+  - - D
+    - 7
+  - - D
+    - 11
+  - - S
+    - 10
+  - - D
+    - 10
+  - - D
+    - 3
+  - - C
+    - 9
+  - - H
+    - 9
+move: &id002 !ruby/object:User 
+  call: 0
+  email: J@K.l
+  friends: []
+
+  hand: 
+  - - S
+    - 6
+  - - S
+    - 13
+  hand_rank: 0
+  money: 1000
+  password: "123"
+  potShare: 0
+  table: &id001 !ruby/object:Table 
+    bigBlind: 4
+    lastDealer: 
+    players: 
+    - *id002
+    - &id003 !ruby/object:User 
+      call: 0
+      email: K@K.l
+      friends: []
+
+      hand: 
+      - - H
+        - 13
+      - - C
+        - 6
+      hand_rank: 0
+      money: 1000
+      password: "456"
+      potShare: 0
+      table: *id001
+      tableBalance: 200
+      username: Kazys
+    - &id004 !ruby/object:User 
+      call: 0
+      email: P@K.l
+      friends: []
+
+      hand: 
+      - - D
+        - 8
+      - - H
+        - 14
+      hand_rank: 0
+      money: 1000
+      password: "789"
+      potShare: 0
+      table: *id001
+      tableBalance: 200
+      username: Petras
+    - &id005 !ruby/object:User 
+      call: 0
+      email: B@K.l
+      friends: []
+
+      hand: 
+      - - S
+        - 12
+      - - H
+        - 11
+      hand_rank: 0
+      money: 1000
+      password: "147"
+      potShare: 0
+      table: *id001
+      tableBalance: 200
+      username: Bronius
+    quota: 200
+    seats: 5
+    smallBlind: 2
+    turn: *id006
+  tableBalance: 200
+  username: Jonas
+players: 
+- *id002
+- *id003
+- *id004
+- *id005
+pot: 0
+raiser: 
+roundMoney: 0
+round_number: 0
+table: *id001
